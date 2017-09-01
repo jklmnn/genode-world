@@ -1,0 +1,8 @@
+LICENSE   := GPLv2
+VERSION   := 1.7.1
+DOWNLOADS := openttd.svn
+
+URL(openttd) := svn://svn.openttd.org/tags/1.7.1
+REV(openttd) := 27909
+DIR(openttd) := openttd
+
