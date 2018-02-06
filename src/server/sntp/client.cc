@@ -21,7 +21,7 @@ Sntp::Client::Client() :
     hints.ai_socktype = SOCK_DGRAM;
 
     //FIXME: Error: libc suspend() called from non-user context (0x116949a) - aborting
-    if(getaddrinfo("0.pool.ntp.org", "123", 0, &_addr)){
+    if(getaddrinfo("0.pool.ntp.org", "123", &hints, &_addr)){
         throw Sntp::Getaddrinfo_failed();
     }
 
@@ -35,9 +35,9 @@ void Sntp::Client::prepare_message(Sntp::Message *msg)
 {
     Genode::memset(msg, 0, sizeof(Sntp::Message));
 
-    msg->leap_indicator = Sntp::Leap_indicator::AlarmCondition;
+    msg->leap_indicator = Sntp::Li_AlarmCondition;
     msg->version = 2;
-    msg->mode = 3;//Sntp::Mode::Client;
+    msg->mode = Sntp::Mode_Client;
     msg->poll = 4;
 }
 

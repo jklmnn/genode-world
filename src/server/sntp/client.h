@@ -6,21 +6,21 @@
 namespace Sntp {
     class Client;
     struct Message;
-    enum Leap_indicator {
-        NoWarning = 0,
-        SixtyOneSec = 1,
-        FiftyOneSec = 2,
-        AlarmCondition = 3
+    enum {
+        Li_NoWarning = 0,
+        Li_SixtyOneSec = 1,
+        Li_FiftyOneSec = 2,
+        Li_AlarmCondition = 3
     };
-    enum Mode {
-        Reserved = 0,
-        SymmetricActive = 1,
-        SymmetricPassive = 2,
-//        Client = 3,
-        Server = 4,
-        Broadcast = 5,
-        ReservedNTP = 6,
-        ReservedPrivate = 7
+    enum {
+        Mode_Reserved = 0,
+        Mode_SymmetricActive = 1,
+        Mode_SymmetricPassive = 2,
+        Mode_Client = 3,
+        Mode_Server = 4,
+        Mode_Broadcast = 5,
+        Mode_ReservedNTP = 6,
+        Mode_ReservedPrivate = 7
     };
     enum {
         UNIX_EPOCH = 2208988800UL
@@ -62,4 +62,4 @@ struct Sntp::Message
     Genode::uint64_t originate_timestamp;
     Genode::uint64_t receive_timestamp;
     Genode::uint64_t transmit_timestamp;
-};
+} __attribute__((packed));
