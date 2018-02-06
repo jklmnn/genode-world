@@ -38,7 +38,7 @@ set config {
 	</start>
 
 	<start name="sntp" priority="-1">
-		<resource name="RAM" quantum="1M"/>
+		<resource name="RAM" quantum="8M"/>
 		<provides><service name="Rtc"/></provides>
 	</start>
 
@@ -71,6 +71,6 @@ append_platform_drv_boot_modules
 
 build_boot_image $boot_modules
 
-append qemu_args " -nographic  "
+append qemu_args " -nographic -net nic,model=e1000 -net user"
 
-run_genode_until ".*--- RTC test finished ---.*\n" 20
+run_genode_until ".*--- RTC test finished ---.*\n" 120
