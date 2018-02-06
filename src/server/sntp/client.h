@@ -1,6 +1,5 @@
 
 #include <base/fixed_stdint.h>
-#include <timer_session/connection.h>
 
 #include <netdb.h>
 
@@ -36,8 +35,6 @@ class Sntp::Client
 {
     private:
 
-        Timer::Connection _timer;
-
         struct addrinfo *_addr;
         int s;
     
@@ -45,7 +42,7 @@ class Sntp::Client
         void prepare_message(Sntp::Message *);
 
     public:
-        Client(Genode::Env &);
+        Client();
 
         Genode::uint64_t timestamp();
 };

@@ -10,8 +10,8 @@
 #include <arpa/inet.h>
 #include <netinet/in.h>
 
-Sntp::Client::Client(Genode::Env &env) :
-    _timer(env), _addr(0), s(0)
+Sntp::Client::Client() :
+    _addr(0), s(0)
 {
     struct addrinfo hints;
 
@@ -20,11 +20,9 @@ Sntp::Client::Client(Genode::Env &env) :
     hints.ai_family = AF_UNSPEC;
     hints.ai_socktype = SOCK_DGRAM;
 
-    _timer.msleep(6000);
     //FIXME: Error: libc suspend() called from non-user context (0x116949a) - aborting
-    while(getaddrinfo("0.pool.ntp.org", "123", 0, &_addr)){
-        Genode::warning("getaddrinfo failed, retrying...");
-        _timer.msleep(1000);
+    if(getaddrinfo("0.pool.ntp.org", "123", 0, &_addr)){
+        throw Sntp::Getaddrinfo_failed();
     }
 
     s = socket(_addr->ai_family, _addr->ai_socktype, _addr->ai_protocol);
@@ -43,8 +41,8 @@ void Sntp::Client::prepare_message(Sntp::Message *msg)
     msg->poll = 4;
 }
 
-Genode::uint64_t Sntp::Client::ntoh64(Genode::uint64_t be){
-
+Genode::uint64_t Sntp::Client::ntoh64(Genode::uint64_t be)
+{
     Genode::uint64_t le = 0;
     Genode::uint8_t *conv = (Genode::uint8_t*)&le;
     
