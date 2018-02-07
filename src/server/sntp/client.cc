@@ -1,6 +1,7 @@
 
 #include <base/log.h>
 #include <util/string.h>
+#include <libc/component.h>
 
 #include <client.h>
 
@@ -13,22 +14,23 @@
 Sntp::Client::Client() :
     _addr(0), s(0)
 {
-    struct addrinfo hints;
+    Libc::with_libc([&] () {
+            struct addrinfo hints;
 
-    Genode::memset(&hints, 0, sizeof(struct addrinfo));
+            Genode::memset(&hints, 0, sizeof(struct addrinfo));
 
-    hints.ai_family = AF_UNSPEC;
-    hints.ai_socktype = SOCK_DGRAM;
+            hints.ai_family = AF_UNSPEC;
+            hints.ai_socktype = SOCK_DGRAM;
 
-    //FIXME: Error: libc suspend() called from non-user context (0x116949a) - aborting
-    if(getaddrinfo("0.pool.ntp.org", "123", &hints, &_addr)){
-        throw Sntp::Getaddrinfo_failed();
-    }
+            if(getaddrinfo("0.pool.ntp.org", "123", &hints, &_addr)){
+            throw Sntp::Getaddrinfo_failed();
+            }
 
-    s = socket(_addr->ai_family, _addr->ai_socktype, _addr->ai_protocol);
-    if(s < 0){
-        throw Sntp::Socket_failed();
-    }
+            s = socket(_addr->ai_family, _addr->ai_socktype, _addr->ai_protocol);
+            if(s < 0){
+            throw Sntp::Socket_failed();
+            }
+            });
 }
 
 void Sntp::Client::prepare_message(Sntp::Message *msg)
@@ -61,18 +63,21 @@ Genode::uint64_t Sntp::Client::ntoh64(Genode::uint64_t be)
 Genode::uint64_t Sntp::Client::timestamp()
 {
     Sntp::Message msg;
-    prepare_message(&msg);
+    Libc::with_libc([&] () {
+            prepare_message(&msg);
 
-    ssize_t sent = sendto(s, &msg, sizeof(Sntp::Message), 0, _addr->ai_addr, sizeof(struct sockaddr_in));
-    if(sent < (ssize_t)sizeof(Sntp::Message)){
-        Genode::warning("sendto incomplete");
-    }
+            ssize_t sent = sendto(s, &msg, sizeof(Sntp::Message), 0, _addr->ai_addr, sizeof(struct sockaddr_in));
+            if(sent < (ssize_t)sizeof(Sntp::Message)){
+            Genode::warning("sendto incomplete");
+            }
 
-    unsigned socklen = 0;
-    ssize_t received = recvfrom(s, &msg, sizeof(Sntp::Message), 0, _addr->ai_addr, &socklen);
-    if(received < (ssize_t)sizeof(Sntp::Message)){
-        Genode::warning("recvfrom incomplete");
-    }
+            //FIXME: timeout on packet loss
+            unsigned socklen = 0;
+            ssize_t received = recvfrom(s, &msg, sizeof(Sntp::Message), 0, _addr->ai_addr, &socklen);
+            if(received < (ssize_t)sizeof(Sntp::Message)){
+            Genode::warning("recvfrom incomplete");
+            }
+            });
 
     return (ntoh64(msg.transmit_timestamp) >> 32) - UNIX_EPOCH;
 }

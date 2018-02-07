@@ -29,16 +29,23 @@ struct Sntp::Session_component : public Genode::Rpc_object<Rtc::Session>
 
     Rtc::Timestamp current_time()
     {
-        time_t ts = _client.timestamp();
-        struct tm *tm = gmtime(&ts);
+        time_t ts;
+        struct tm *tm;
         Rtc::Timestamp time {};
 
-        time.second = tm->tm_sec;
-        time.minute = tm->tm_min;
-        time.hour = tm->tm_hour;
-        time.day = tm->tm_mday;
-        time.month = tm->tm_mon + 1;
-        time.year = tm->tm_year + 1900;
+        Libc::with_libc([&](){
+                
+                ts = _client.timestamp();
+                tm = gmtime(&ts);
+        
+                time.second = tm->tm_sec;
+                time.minute = tm->tm_min;
+                time.hour = tm->tm_hour;
+                time.day = tm->tm_mday;
+                time.month = tm->tm_mon + 1;
+                time.year = tm->tm_year + 1900;
+
+                });
 
         return time;
     }
