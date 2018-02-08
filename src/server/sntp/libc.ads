@@ -29,7 +29,7 @@ is
     with
         Import,
         Convention => C,
-        External_Name => "ntohl";
+        External_Name => "libc_ntohl";
 
     private
 

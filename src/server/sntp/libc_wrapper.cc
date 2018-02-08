@@ -57,4 +57,9 @@ extern "C" {
         return received;
     }
 
+    Genode::uint32_t libc_ntohl(Genode::uint32_t net)
+    {
+        return ntohl(net);
+    }
+
 } // extern C
