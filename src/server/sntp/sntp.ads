@@ -1,5 +1,6 @@
 with System;
 with libc;
+use all type libc.Socket;
 pragma Elaborate_All (libc);
 
 package sntp
@@ -67,7 +68,7 @@ is
 
     private
 
-    function Swap is new libc.ntohl (Timestamp);
+    function Swap is new libc.ntohl(Timestamp);
     function Send is new libc.send(Message);
     function Recv is new libc.recv(Message);
 

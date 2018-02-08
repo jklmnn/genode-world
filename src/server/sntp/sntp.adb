@@ -16,8 +16,11 @@ is
     function connect(Host : String; Ai : libc.Addrinfo) return libc.Socket
     is
         Addr_status : Integer := libc.getaddrinfo(Host, Ai);
-        Sock : libc.Socket := libc.getsocket(Ai);
+        Sock : libc.Socket := -42;
     begin
+        if Addr_status = 0 then
+            Sock := libc.getsocket(Ai);
+        end if;
         return Sock;
     end connect;
 
