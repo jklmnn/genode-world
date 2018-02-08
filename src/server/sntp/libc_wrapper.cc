@@ -10,7 +10,7 @@
 
 extern "C" {
 
-    int libc_getaddrinfo(char *address, struct addrinfo *addr)
+    int libc_getaddrinfo(char *address, struct addrinfo **addr)
     {
         struct addrinfo hints;
         int status = -1;
@@ -21,14 +21,15 @@ extern "C" {
                 hints.ai_family = AF_UNSPEC;
                 hints.ai_socktype = SOCK_DGRAM;
 
-                status = getaddrinfo(address, "123", &hints, &addr);
+                status = getaddrinfo(address, "123", &hints, addr);
                 });
 
         return status;
     }
 
-    int libc_socket(struct addrinfo *ai)
+    int libc_socket(struct addrinfo **ai_ptr)
     {
+        struct addrinfo *ai = *ai_ptr;
         int status = -1;
 
         Libc::with_libc([&] () {
@@ -42,7 +43,7 @@ extern "C" {
     {
         long sent = 0;
         Libc::with_libc([&] (){
-                sent = sendto(s, data, length, 0, ai->ai_addr, sizeof(struct addrinfo));
+                sent = sendto(s, data, length, 0, ai->ai_addr, sizeof(struct sockaddr_in));
                 });
         return sent;
     }
