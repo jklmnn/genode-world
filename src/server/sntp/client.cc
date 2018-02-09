@@ -20,5 +20,15 @@ Sntp::Client::Client() :
 
 Genode::uint64_t Sntp::Client::timestamp()
 {
-    return (Genode::uint64_t)sntp__get_time(s, _addr);
+    int retries = 5;
+    Genode::uint64_t ts;
+    while(ts = (Genode::uint64_t)sntp__get_time(s, _addr),
+            !ts && retries--){
+        Genode::warning("sntp timed out, retrying ", retries, " times...");
+    }
+    if(!ts){
+        throw Sntp::Timeout();
+    }
+
+    return ts;
 }

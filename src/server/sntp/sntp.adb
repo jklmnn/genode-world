@@ -30,8 +30,9 @@ is
             Precision => 0, Root_Delay => 0, Root_Dispersion => 0, Stratum => 0, others => 0);
         Sent : Long_Integer := Send(Sock, Msg, Ai);
         Received : Long_Integer := Recv(Sock, Msg, Ai, 1000000);
+        Ts : Timestamp := (if Received > 0 then Swap(Msg.Transmit_Timestamp_Sec) - Unix_Epoch else 0);
     begin
-        return Swap(Msg.Transmit_Timestamp_Sec) - Unix_Epoch;
+        return ts;
     end get_time;
 
 end sntp;

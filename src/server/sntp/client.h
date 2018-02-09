@@ -6,6 +6,7 @@
 namespace Sntp {
     class Client;
     class Connection_failed : Genode::Exception {};
+    class Timeout : Genode::Exception {};
 };
 
 class Sntp::Client

@@ -66,6 +66,8 @@ extern "C" {
 
                 if(FD_ISSET(s, &fds)){
                     received = recvfrom(s, data, length, 0, ai->ai_addr, &socklen);
+                }else{
+                    received = 0;
                 }
 
                 });
