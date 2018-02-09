@@ -14,12 +14,11 @@ is
         return lc_send(Sock, Msg'Address, Msg'Size / 8, Ai);
     end send;
 
-    function recv(Sock : Socket; Ai : Addrinfo) return Data
+    function recv(Sock : Socket; Msg : out Data; Ai : Addrinfo; Timeout : Long_Integer) return Long_Integer
     is
-        Msg : Data;
-        Received : Long_Integer := lc_recv(Sock, Msg'Address, Msg'Size / 8, Ai);
+        Received : Long_Integer := lc_recv(Sock, Msg'Address, Msg'Size / 8, Ai, Timeout);
     begin
-        return Msg;
+        return Received;
     end recv;
 
 end libc;

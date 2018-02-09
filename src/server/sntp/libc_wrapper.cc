@@ -48,12 +48,26 @@ extern "C" {
         return sent;
     }
 
-    long libc_recv(int s, void *data, size_t length, struct addrinfo *ai)
+    long libc_recv(int s, void *data, size_t length, struct addrinfo *ai, long timeout)
     {
         long received = 0;
         unsigned socklen = 0;
+        struct timeval tv;
+        fd_set fds;
+
+        tv.tv_sec = 0;
+        tv.tv_usec = timeout;
+
         Libc::with_libc([&] (){
-                received = recvfrom(s, data, length, 0, ai->ai_addr, &socklen);
+                FD_ZERO(&fds);
+                FD_SET(s, &fds);
+
+                select(s + 1, &fds, 0, 0, &tv);
+
+                if(FD_ISSET(s, &fds)){
+                    received = recvfrom(s, data, length, 0, ai->ai_addr, &socklen);
+                }
+
                 });
         return received;
     }

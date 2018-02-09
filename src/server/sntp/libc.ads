@@ -21,7 +21,7 @@ is
 
     generic
         type Data is private;
-    function recv(Sock : Socket; Ai : Addrinfo) return Data;
+    function recv(Sock : Socket; Msg : out Data; Ai : Addrinfo; Timeout : Long_Integer) return Long_Integer;
 
     generic
         type U32 is private;
@@ -45,7 +45,7 @@ is
         Convention => C,
         External_Name => "libc_send";
 
-    function lc_recv(S : Socket; Data : System.Address; Size : Integer; Ai : Addrinfo) return Long_Integer
+    function lc_recv(S : Socket; Data : System.Address; Size : Integer; Ai : Addrinfo; Timeout : Long_Integer) return Long_Integer
     with
         Import,
         Convention => C,

@@ -29,8 +29,8 @@ is
         Msg : Message := ( Leap => AlarmCondition, Version => 2, Mode => Client, Poll => 4,
             Precision => 0, Root_Delay => 0, Root_Dispersion => 0, Stratum => 0, others => 0);
         Sent : Long_Integer := Send(Sock, Msg, Ai);
+        Received : Long_Integer := Recv(Sock, Msg, Ai, 1000000);
     begin
-        Msg := Recv(Sock, Ai);
         return Swap(Msg.Transmit_Timestamp_Sec) - Unix_Epoch;
     end get_time;
 
