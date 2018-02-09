@@ -37,9 +37,12 @@ set config {
 		<provides> <service name="Timer"/> </provides>
 	</start>
 
-	<start name="sntp" priority="-1">
+	<start name="sntp">
 		<resource name="RAM" quantum="8M"/>
 		<provides><service name="Rtc"/></provides>
+                <config>
+                    <sntp host="0.pool.ntp.org" timeout="1000000"/>
+                </config>
 	</start>
 
 	<start name="test-rtc" priority="-1">

@@ -6,6 +6,8 @@
 #include <root/component.h>
 #include <rtc_session/rtc_session.h>
 #include <timer_session/connection.h>
+#include <base/attached_rom_dataspace.h>
+#include <util/xml_node.h>
 
 #include <time.h>
 
@@ -21,7 +23,14 @@ struct Sntp::Session_component : public Genode::Rpc_object<Rtc::Session>
 {
     Genode::Env &_env;
 
-    Sntp::Client _client {};
+    Genode::Attached_rom_dataspace _config { _env, "config" };
+
+    Sntp::Client _client {
+        _config.xml().sub_node("sntp")
+            .attribute_value("host", Genode::String<64>()).string(),
+        _config.xml().sub_node("sntp")
+            .attribute_value<long>("timeout", 0)
+    };
 
     Session_component(Genode::Env &env) :
         _env(env)

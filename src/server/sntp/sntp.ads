@@ -74,6 +74,6 @@ is
 
     function c_connect(Host : System.Address; Length : Integer; Ai : libc.Addrinfo) return libc.Socket;
     function connect(Host : String; Ai : libc.Addrinfo) return libc.Socket;
-    function get_time(Sock : libc.Socket; Ai : libc.Addrinfo) return Timestamp;
+    function get_time(Sock : libc.Socket; Ai : libc.Addrinfo; Timeout : Long_Integer) return Timestamp;
 
 end sntp;

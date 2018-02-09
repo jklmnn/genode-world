@@ -24,12 +24,12 @@ is
         return Sock;
     end connect;
 
-    function get_time(Sock : libc.Socket; Ai : libc.Addrinfo) return Timestamp
+    function get_time(Sock : libc.Socket; Ai : libc.Addrinfo; Timeout : Long_Integer) return Timestamp
     is
         Msg : Message := ( Leap => AlarmCondition, Version => 2, Mode => Client, Poll => 4,
             Precision => 0, Root_Delay => 0, Root_Dispersion => 0, Stratum => 0, others => 0);
         Sent : Long_Integer := Send(Sock, Msg, Ai);
-        Received : Long_Integer := Recv(Sock, Msg, Ai, 1000000);
+        Received : Long_Integer := Recv(Sock, Msg, Ai, Timeout);
         Ts : Timestamp := (if Received > 0 then Swap(Msg.Transmit_Timestamp_Sec) - Unix_Epoch else 0);
     begin
         return ts;

@@ -14,10 +14,11 @@ class Sntp::Client
     private:
 
         struct addrinfo *_addr;
-        int s;
+        int _s;
+        long _timeout;
 
     public:
-        Client();
+        Client(const char *, long);
 
         Genode::uint64_t timestamp();
 };
