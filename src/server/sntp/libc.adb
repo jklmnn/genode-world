@@ -1,4 +1,6 @@
 package body libc
+with
+SPARK_Mode => Off
 is
 
     function getaddrinfo(Address : String; Ai : Addrinfo) return Integer
@@ -8,17 +10,16 @@ is
         return lc_getaddrinfo(C_Address'Address, Ai);
     end getaddrinfo;
 
-    function send(Sock : Socket; Msg : Data; Ai : Addrinfo) return Long_Integer
+    procedure send(Sock : Socket; Msg : Data; Ai : Addrinfo; Sent : out Long_Integer)
     is
     begin
-        return lc_send(Sock, Msg'Address, Msg'Size / 8, Ai);
+        Sent := lc_send(Sock, Msg'Address, Msg'Size / 8, Ai);
     end send;
 
-    function recv(Sock : Socket; Msg : out Data; Ai : Addrinfo; Timeout : Long_Integer) return Long_Integer
+    procedure recv(Sock : Socket; Msg : out Data; Ai : Addrinfo; Timeout : Long_Integer; Received : out Long_Integer)
     is
-        Received : Long_Integer := lc_recv(Sock, Msg'Address, Msg'Size / 8, Ai, Timeout);
     begin
-        return Received;
+        Received := lc_recv(Sock, Msg'Address, Msg'Size / 8, Ai, Timeout);
     end recv;
 
 end libc;

@@ -28,11 +28,18 @@ is
     is
         Msg : Message := ( Leap => AlarmCondition, Version => 2, Mode => Client, Poll => 4,
             Precision => 0, Root_Delay => 0, Root_Dispersion => 0, Stratum => 0, others => 0);
-        Sent : Long_Integer := Send(Sock, Msg, Ai);
-        Received : Long_Integer := Recv(Sock, Msg, Ai, Timeout);
-        Ts : Timestamp := (if Received > 0 then Swap(Msg.Transmit_Timestamp_Sec) - Unix_Epoch else 0);
+        Sent : Long_Integer;
+        Received : Long_Integer;
+        Ts : Timestamp;
     begin
-        return ts;
+        Send(Sock, Msg, Ai, Sent);
+        if Sent > 0 then
+            Recv(Sock, Msg, Ai, Timeout, Received);
+            if Received > 0 then
+                Ts := Swap(Msg.Transmit_Timestamp_Sec) - Unix_Epoch;
+            end if;
+        end if;
+        return Ts;
     end get_time;
 
 end sntp;

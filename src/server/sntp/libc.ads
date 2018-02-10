@@ -2,6 +2,8 @@ with System;
 
 
 package libc
+with
+SPARK_Mode => On
 is
 
     type Addrinfo is new System.Address;
@@ -17,11 +19,11 @@ is
 
     generic
         type Data is private;
-    function send(Sock : Socket; Msg : Data; Ai : Addrinfo) return Long_Integer;
+    procedure send(Sock : Socket; Msg : Data; Ai : Addrinfo; Sent : out Long_Integer);
 
     generic
         type Data is private;
-    function recv(Sock : Socket; Msg : out Data; Ai : Addrinfo; Timeout : Long_Integer) return Long_Integer;
+    procedure recv(Sock : Socket; Msg : out Data; Ai : Addrinfo; Timeout : Long_Integer; Received : out Long_Integer);
 
     generic
         type U32 is private;
