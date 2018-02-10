@@ -69,11 +69,13 @@ is
     private
 
     function Swap is new libc.ntohl(Timestamp);
-    procedure Send is new libc.send(Message);
-    procedure Recv is new libc.recv(Message);
+    procedure Send is new libc.send(Message, Message'Size);
+    procedure Recv is new libc.recv(Message, Message'Size);
 
     function c_connect(Host : System.Address; Length : Integer; Ai : libc.Addrinfo) return libc.Socket;
-    function connect(Host : String; Ai : libc.Addrinfo) return libc.Socket;
+    function connect(Host : String; Ai : libc.Addrinfo) return libc.Socket
+      with
+        Pre => Host'Last < Integer'Last;
     function get_time(Sock : libc.Socket; Ai : libc.Addrinfo; Timeout : Long_Integer) return Timestamp;
 
 end sntp;

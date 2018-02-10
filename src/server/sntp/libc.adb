@@ -13,13 +13,13 @@ is
     procedure send(Sock : Socket; Msg : Data; Ai : Addrinfo; Sent : out Long_Integer)
     is
     begin
-        Sent := lc_send(Sock, Msg'Address, Msg'Size / 8, Ai);
+        Sent := lc_send(Sock, Msg'Address, Data_Size / 8, Ai);
     end send;
 
     procedure recv(Sock : Socket; Msg : out Data; Ai : Addrinfo; Timeout : Long_Integer; Received : out Long_Integer)
     is
     begin
-        Received := lc_recv(Sock, Msg'Address, Msg'Size / 8, Ai, Timeout);
+        Received := lc_recv(Sock, Msg'Address, Data_Size / 8, Ai, Timeout);
     end recv;
 
 end libc;

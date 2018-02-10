@@ -24,19 +24,22 @@ is
         return Sock;
     end connect;
 
+    pragma Warnings(Off, "unreferenced function");
     function get_time(Sock : libc.Socket; Ai : libc.Addrinfo; Timeout : Long_Integer) return Timestamp
     is
         Msg : Message := ( Leap => AlarmCondition, Version => 2, Mode => Client, Poll => 4,
             Precision => 0, Root_Delay => 0, Root_Dispersion => 0, Stratum => 0, others => 0);
         Sent : Long_Integer;
         Received : Long_Integer;
-        Ts : Timestamp;
+        Ts : Timestamp := 0;
     begin
-        Send(Sock, Msg, Ai, Sent);
-        if Sent > 0 then
-            Recv(Sock, Msg, Ai, Timeout, Received);
-            if Received > 0 then
-                Ts := Swap(Msg.Transmit_Timestamp_Sec) - Unix_Epoch;
+        if Sock >= 0 then
+            Send(Sock, Msg, Ai, Sent);
+            if Sent > 0 then
+                Recv(Sock, Msg, Ai, Timeout, Received);
+                if Received > 0 then
+                    Ts := Swap(Msg.Transmit_Timestamp_Sec) - Unix_Epoch;
+                end if;
             end if;
         end if;
         return Ts;
