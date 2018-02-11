@@ -1,4 +1,6 @@
 with libc;
+with libc_types;
+use all type libc_types.Addrinfo;
 
 package body sntp
 with
@@ -12,22 +14,26 @@ is
     is
         S_Host : String (1 .. Length);
         for S_Host'Address use Host;
+        Sock : libc_types.Socket := -42;
     begin
-        return connect(S_Host, Ai);
+        if System."/="(Host, System.Null_Address) then
+            Sock := connect(S_Host, Ai);
+        end if;
+        return Sock;
     end c_connect;
 
     function connect(Host : String; Ai : libc_types.Addrinfo) return libc_types.Socket
     is
-        Addr_status : constant Integer := libc.getaddrinfo(Host, Ai);
         Sock : libc_types.Socket := -42;
     begin
-        if Addr_status = 0 then
-            Sock := libc.getsocket(Ai);
+        if Ai /= libc_types.Null_Address then
+            if libc.getaddrinfo(Host, Ai) = 0 then
+                Sock := libc.getsocket(Ai);
+            end if;
         end if;
         return Sock;
     end connect;
 
-    --pragma Warnings(Off, "unreferenced function");
     function get_time(Sock : libc_types.Socket; Ai : libc_types.Addrinfo; Timeout : Long_Integer)
                       return sntp_types.Timestamp
     is
@@ -39,7 +45,7 @@ is
         Received : Long_Integer;
         Ts : sntp_types.Timestamp := 0;
     begin
-        if Sock >= 0 then
+        if Sock >= 0 and Ai /= libc_types.Null_Address then
             libc.Send(Sock, Msg, Ai, Sent);
             if Sent > 0 then
                 libc.Recv(Sock, Msg, Ai, Timeout, Received);

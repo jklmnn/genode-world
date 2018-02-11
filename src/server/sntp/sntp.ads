@@ -13,8 +13,11 @@ is
                        return libc_types.Socket;
     function connect(Host : String; Ai : libc_types.Addrinfo) return libc_types.Socket
       with
-        Pre => Host'Last < Integer'Last;
+        Pre => Host'Last < Integer'Last,
+        Depends => (connect'Result => (Host, Ai));
+
     function get_time(Sock : libc_types.Socket; Ai : libc_types.Addrinfo; Timeout : Long_Integer)
-                      return sntp_types.Timestamp;
+                      return sntp_types.Timestamp
+    with Depends => (get_time'Result => (Sock, Ai, Timeout));
 
 end sntp;
