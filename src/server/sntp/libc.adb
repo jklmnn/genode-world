@@ -1,26 +1,60 @@
+with System;
+with libc_import;
+
 package body libc
 with
-SPARK_Mode => Off
+SPARK_Mode => On
 is
 
-    function getaddrinfo(Address : String; Ai : Addrinfo) return Integer
+    pragma Warnings (Off, "pragma Restrictions (No_Exception_Propagation) in effect");
+    
+    function getaddrinfo(Address : String; Ai : libc_types.Addrinfo) return Integer
+      with
+        SPARK_Mode => Off
     is
         C_Address : String := Address & Character'Val(0);
     begin
-        return lc_getaddrinfo(C_Address'Address, Ai);
+        return libc_import.lc_getaddrinfo(C_Address'Address,
+                                           System.Address(Ai));
     end getaddrinfo;
-
-    procedure send(Sock : Socket; Msg : Data; Ai : Addrinfo; Sent : out Long_Integer)
+    
+    function getsocket(Ai : libc_types.Addrinfo) return libc_types.Socket
+      with
+        SPARK_Mode => Off
     is
     begin
-        Sent := lc_send(Sock, Msg'Address, Data_Size / 8, Ai);
+        return libc_types.Socket(libc_import.lc_socket(System.Address(Ai)));
+    end getsocket;
+
+    procedure send(Sock : libc_types.Socket; Msg : sntp_types.Message;
+                   Ai : libc_types.Addrinfo; Sent : out Long_Integer)
+      with
+        SPARK_Mode => Off
+    is
+    begin
+        Sent := libc_import.lc_send(Integer(Sock),
+                                     Msg'Address, sntp_types.Message'Size / 8,
+                                     System.Address(Ai));
     end send;
 
-    procedure recv(Sock : Socket; Msg : out Data; Ai : Addrinfo; Timeout : Long_Integer; Received : out Long_Integer)
+    procedure recv(Sock : libc_types.Socket; Msg : out sntp_types.Message;
+                   Ai : libc_types.Addrinfo; Timeout : Long_Integer;
+                   Received : out Long_Integer)
+      with SPARK_Mode => Off
     is
     begin
-        Received := lc_recv(Sock, Msg'Address, Data_Size / 8, Ai, Timeout);
+        Received := libc_import.lc_recv(Integer(Sock),
+                                         Msg'Address, Msg'Size / 8,
+                                         System.Address(Ai), Timeout);
     end recv;
-
+    
+    function ntohl(net : sntp_types.Timestamp) return sntp_types.Timestamp
+      with
+        SPARK_Mode => Off
+    is
+    begin
+        return sntp_types.Timestamp(libc_import.lc_ntohl(libc_import.Unsigned_32(net)));
+    end ntohl;
+    
 end libc;
         

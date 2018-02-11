@@ -15,6 +15,8 @@ extern "C" {
         struct addrinfo hints;
         int status = -1;
 
+        Genode::log(addr);
+
         Libc::with_libc([&] () {
                 Genode::memset(&hints, 0, sizeof(struct addrinfo));
                 

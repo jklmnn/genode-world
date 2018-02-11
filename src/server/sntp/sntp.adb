@@ -1,9 +1,12 @@
+with libc;
+
 package body sntp
 with
     SPARK_Mode => On
 is
 
-    function c_connect(Host : System.Address; Length : Integer; Ai : libc.Addrinfo) return libc.Socket
+    function c_connect(Host : System.Address; Length : Integer; Ai : libc_types.Addrinfo)
+                       return libc_types.Socket
     with
         SPARK_Mode => Off
     is
@@ -13,10 +16,10 @@ is
         return connect(S_Host, Ai);
     end c_connect;
 
-    function connect(Host : String; Ai : libc.Addrinfo) return libc.Socket
+    function connect(Host : String; Ai : libc_types.Addrinfo) return libc_types.Socket
     is
-        Addr_status : Integer := libc.getaddrinfo(Host, Ai);
-        Sock : libc.Socket := -42;
+        Addr_status : constant Integer := libc.getaddrinfo(Host, Ai);
+        Sock : libc_types.Socket := -42;
     begin
         if Addr_status = 0 then
             Sock := libc.getsocket(Ai);
@@ -24,21 +27,24 @@ is
         return Sock;
     end connect;
 
-    pragma Warnings(Off, "unreferenced function");
-    function get_time(Sock : libc.Socket; Ai : libc.Addrinfo; Timeout : Long_Integer) return Timestamp
+    --pragma Warnings(Off, "unreferenced function");
+    function get_time(Sock : libc_types.Socket; Ai : libc_types.Addrinfo; Timeout : Long_Integer)
+                      return sntp_types.Timestamp
     is
-        Msg : Message := ( Leap => AlarmCondition, Version => 2, Mode => Client, Poll => 4,
-            Precision => 0, Root_Delay => 0, Root_Dispersion => 0, Stratum => 0, others => 0);
+        Msg : sntp_types.Message := ( Leap => sntp_types.AlarmCondition,
+                                      Version => 2, Mode => sntp_types.Client,
+                                      Poll => 4, Precision => 0, Root_Delay => 0,
+                                      Root_Dispersion => 0, Stratum => 0, others => 0);
         Sent : Long_Integer;
         Received : Long_Integer;
-        Ts : Timestamp := 0;
+        Ts : sntp_types.Timestamp := 0;
     begin
         if Sock >= 0 then
-            Send(Sock, Msg, Ai, Sent);
+            libc.Send(Sock, Msg, Ai, Sent);
             if Sent > 0 then
-                Recv(Sock, Msg, Ai, Timeout, Received);
+                libc.Recv(Sock, Msg, Ai, Timeout, Received);
                 if Received > 0 then
-                    Ts := Swap(Msg.Transmit_Timestamp_Sec) - Unix_Epoch;
+                    Ts := sntp_types.Unix_Epoch(libc.ntohl(Msg.Transmit_Timestamp_Sec));
                 end if;
             end if;
         end if;
