@@ -1,3 +1,5 @@
+with System;
+
 package sntp_types
 with
 SPARK_Mode => On
@@ -62,5 +64,7 @@ is
             Transmit_Timestamp_Frac     at 44 range 0 .. 31;
         end record;
     for Message'Size use 384;
+    for Message'Bit_Order use System.High_Order_First;
+    for Message'Scalar_Storage_Order use System.High_Order_First;
 
 end sntp_types;

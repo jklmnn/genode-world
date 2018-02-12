@@ -29,10 +29,4 @@ is
         Convention => C,
         External_Name => "libc_recv";
 
-    function lc_ntohl(Net : Unsigned_32) return Unsigned_32
-    with
-        Import,
-        Convention => C,
-        External_Name => "libc_ntohl";
-
 end libc_import;

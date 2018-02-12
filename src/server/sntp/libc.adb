@@ -48,13 +48,5 @@ is
                                          System.Address(Ai), Timeout);
     end recv;
     
-    function ntohl(net : sntp_types.Timestamp) return sntp_types.Timestamp
-      with
-        SPARK_Mode => Off
-    is
-    begin
-        return sntp_types.Timestamp(libc_import.lc_ntohl(libc_import.Unsigned_32(net)));
-    end ntohl;
-    
 end libc;
         

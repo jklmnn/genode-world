@@ -50,7 +50,7 @@ is
             if Sent > 0 then
                 libc.Recv(Sock, Msg, Ai, Timeout, Received);
                 if Received > 0 then
-                    Ts := sntp_types.Unix_Epoch(libc.ntohl(Msg.Transmit_Timestamp_Sec));
+                    Ts := sntp_types.Unix_Epoch(Msg.Transmit_Timestamp_Sec);
                 end if;
             end if;
         end if;

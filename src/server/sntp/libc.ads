@@ -27,6 +27,4 @@ is
         Pre => libc_types.">="(Sock, 0) and
       libc_types."/="(Ai, libc_types.Null_Address);
 
-    function ntohl(net : sntp_types.Timestamp) return sntp_types.Timestamp;
-
 end libc;
