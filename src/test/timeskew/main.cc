@@ -90,8 +90,8 @@ struct Main
         print_time(Genode::Cstring("X86"), x86_ts_end);
         print_time(Genode::Cstring("Sntp timer"), convert(convert(sntp_ts_start) + timeout));
         print_time(Genode::Cstring("X86 timer"), convert(convert(x86_ts_start) + timeout));
-        Genode::log("Sntp skew: ", convert(sntp_ts_end) - (convert(sntp_ts_start) + timeout));
-        Genode::log("X86 skew: ", convert(x86_ts_end) - (convert(x86_ts_start) + timeout));
+        Genode::log("Sntp skew: ", (int)(convert(sntp_ts_end) - (convert(sntp_ts_start) + timeout)));
+        Genode::log("X86 skew: ", (int)(convert(x86_ts_end) - (convert(x86_ts_start) + timeout)));
         Genode::log("###");
     }
 };
