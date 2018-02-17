@@ -16,8 +16,15 @@ is
         Pre => Host'Last < Integer'Last,
         Depends => (connect'Result => (Host, Ai));
 
-    function get_time(Sock : libc_types.Socket; Ai : libc_types.Addrinfo; Timeout : Long_Integer)
-                      return sntp_types.Timestamp
-    with Depends => (get_time'Result => (Sock, Ai, Timeout));
+    function c_get_time(Sock : libc_types.Socket; Ai : libc_types.Addrinfo; Timeout : Long_Integer)
+                       return sntp_types.Timestamp;
+    
+    procedure get_time(Sock : libc_types.Socket; Ai : libc_types.Addrinfo; Timeout : Long_Integer;
+                       Ts : out sntp_types.Timestamp)
+      with Depends => (Ts => (Sock, Ai, Timeout), Recv_Buffer => +(Sock, Ai));
+    
+    Recv_Buffer : sntp_types.Message;
+    
+    pragma Volatile(Recv_Buffer);
 
 end sntp;

@@ -4,12 +4,12 @@ use all type libc_types.Addrinfo;
 
 package body sntp
 with
-    SPARK_Mode => On
+SPARK_Mode => On
 is
 
     function c_connect(Host : System.Address; Length : Integer; Ai : libc_types.Addrinfo)
                        return libc_types.Socket
-    with
+      with
         SPARK_Mode => Off
     is
         S_Host : String (1 .. Length);
@@ -34,18 +34,42 @@ is
         return Sock;
     end connect;
 
-    function get_time(Sock : libc_types.Socket; Ai : libc_types.Addrinfo; Timeout : Long_Integer)
-                      return sntp_types.Timestamp
+    function c_get_time(Sock : libc_types.Socket; Ai : libc_types.Addrinfo; Timeout : Long_Integer)
+                        return sntp_types.Timestamp
+      with
+        SPARK_Mode => Off
     is
+        Ts : sntp_types.Timestamp;
+    begin
+        get_time(Sock, Ai, Timeout, Ts);
+        return Ts;
+    end c_get_time;
+    
+    procedure get_time(Sock : libc_types.Socket; Ai : libc_types.Addrinfo; Timeout : Long_Integer;
+                       Ts : out sntp_types.Timestamp)
+    is
+        procedure flush(Sock : libc_types.Socket; Ai : libc_types.Addrinfo)
+        is
+            Msg_Size : constant Long_Integer := 48;
+            Received : Long_Integer := Msg_Size;
+            Msg : sntp_types.Message;
+        begin
+            while Received >= Msg_Size loop
+                libc.Recv(Sock, Msg, Ai, 0, Received);
+                Recv_Buffer := Msg;
+            end loop;
+        end flush;
+        
         Msg : sntp_types.Message := ( Leap => sntp_types.AlarmCondition,
                                       Version => 2, Mode => sntp_types.Client,
                                       Poll => 4, Precision => 0, Root_Delay => 0,
                                       Root_Dispersion => 0, Stratum => 0, others => 0);
         Sent : Long_Integer;
         Received : Long_Integer;
-        Ts : sntp_types.Timestamp := 0;
     begin
+        Ts := 0;
         if Sock >= 0 and Ai /= libc_types.Null_Address then
+            flush(Sock, Ai);
             libc.Send(Sock, Msg, Ai, Sent);
             if Sent > 0 then
                 libc.Recv(Sock, Msg, Ai, Timeout, Received);
@@ -54,8 +78,7 @@ is
                 end if;
             end if;
         end if;
-        return Ts;
     end get_time;
 
 end sntp;
-        
+

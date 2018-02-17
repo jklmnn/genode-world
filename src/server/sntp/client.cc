@@ -22,7 +22,7 @@ Genode::uint64_t Sntp::Client::timestamp()
 {
     int retries = 5;
     Genode::uint64_t ts;
-    while(ts = (Genode::uint64_t)sntp__get_time(_s, _addr, _timeout),
+    while(ts = (Genode::uint64_t)sntp__c_get_time(_s, _addr, _timeout),
             !ts && retries--){
         Genode::warning("sntp timed out, retrying ", retries, " times...");
     }
