@@ -10,7 +10,8 @@ Clock::Clock::Clock(Genode::Env &env) :
     _synced_timestamp = _rtc.current_time();
     _local_timestamp = _timer.elapsed_ms() / 1000;
     _skew = 0;
-    _skew_periods = 24;
+    _skew_status = 1;
+    _skew_periods = 23;
 
     _timer.trigger_once(SYNC_TIMEOUT);
 }
@@ -19,14 +20,19 @@ void Clock::Clock::synchronize()
 {
     Rtc::Timestamp synced;
     unsigned long local;
-    if(_skew_periods == 24){
-        synced = _rtc.current_time();
-        local = (_timer.elapsed_ms() / 1000) - _local_timestamp;
-        _skew += convert(_synced_timestamp) + local + _skew - convert(synced);
-        _synced_timestamp = synced;
-        _local_timestamp = local;
+    if(_skew_periods == 23){
+        try{
+            synced = _rtc.current_time();
+            local = (_timer.elapsed_ms() / 1000) - _local_timestamp;
+            _skew += (convert(_synced_timestamp) + local + _skew * _skew_status - convert(synced)) / _skew_status;
+            _synced_timestamp = synced;
+            _local_timestamp = local;
+            Genode::log("clock synchronized, current skew is ", _skew);
+        }catch(...){
+            Genode::warning("Unable to synchronize, continuing with old values...");
+        }
+        _skew_status = 24;
         _skew_periods = 0;
-        Genode::log("clock synchronized, current skew is ", _skew);
     }else{
         _skew_periods += 1;
     }

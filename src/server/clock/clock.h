@@ -19,6 +19,7 @@ class Clock::Clock
         Rtc::Timestamp _synced_timestamp;
         unsigned long _local_timestamp;
         long _skew;
+        int _skew_status;
         unsigned _skew_periods;
 
         Timer::Connection _timer;
