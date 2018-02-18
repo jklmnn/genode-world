@@ -22,10 +22,11 @@ void Clock::Clock::synchronize()
     if(_skew_periods == 24){
         synced = _rtc.current_time();
         local = (_timer.elapsed_ms() / 1000) - _local_timestamp;
-        _skew = convert(_synced_timestamp) + local - convert(synced);
+        _skew += convert(_synced_timestamp) + local + _skew - convert(synced);
         _synced_timestamp = synced;
         _local_timestamp = local;
         _skew_periods = 0;
+        Genode::log("clock synchronized, current skew is ", _skew);
     }else{
         _skew_periods += 1;
     }
