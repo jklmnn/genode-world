@@ -23,7 +23,7 @@ void Clock::Clock::synchronize()
             Rtc::Timestamp const synced_ts = _rtc.current_time();
             unsigned long const local_ts = _timer.elapsed_ms() / 1000;
             unsigned long const local = local_ts - _local_timestamp;
-            _skew += (convert(synced) - (convert(_synced_timestamp) + local + _skew * _skew_status)) / _skew_status;
+            _skew += (convert(synced_ts) - (convert(_synced_timestamp) + local + _skew * _skew_status)) / _skew_status;
             _synced_timestamp = synced_ts;
             _local_timestamp = local_ts;
             Genode::log("clock synchronized, current skew is ", _skew);
