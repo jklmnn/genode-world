@@ -18,15 +18,14 @@ Clock::Clock::Clock(Genode::Env &env) :
 
 void Clock::Clock::synchronize()
 {
-    Rtc::Timestamp synced;
-    unsigned long local;
     if(_skew_periods == 23){
         try{
-            synced = _rtc.current_time();
-            local = (_timer.elapsed_ms() / 1000) - _local_timestamp;
-            _skew += (convert(_synced_timestamp) + local + _skew * _skew_status - convert(synced)) / _skew_status;
-            _synced_timestamp = synced;
-            _local_timestamp = local;
+            Rtc::Timestamp const synced_ts = _rtc.current_time();
+            unsigned long const local_ts = _timer.elapsed_ms() / 1000;
+            unsigned long const local = local_ts - _local_timestamp;
+            _skew += (convert(synced) - (convert(_synced_timestamp) + local + _skew * _skew_status)) / _skew_status;
+            _synced_timestamp = synced_ts;
+            _local_timestamp = local_ts;
             Genode::log("clock synchronized, current skew is ", _skew);
         }catch(...){
             Genode::warning("Unable to synchronize, continuing with old values...");
