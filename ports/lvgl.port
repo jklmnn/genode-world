@@ -1,0 +1,6 @@
+LICENSE   := MIT
+VERSION   := git
+DOWNLOADS := lvgl.git
+URL(lvgl)  := https://github.com/littlevgl/lvgl.git
+REV(lvgl)  := a9a55321c7fe5159834f417aaff92117a85dddcd
+DIR(lvgl)  := lvgl
