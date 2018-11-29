@@ -1,6 +1,8 @@
 LICENSE   := MIT
 VERSION   := git
 DOWNLOADS := lvgl.git
-URL(lvgl)  := https://github.com/littlevgl/lvgl.git
-REV(lvgl)  := a9a55321c7fe5159834f417aaff92117a85dddcd
-DIR(lvgl)  := lvgl
+URL(lvgl) := https://github.com/littlevgl/lvgl.git
+REV(lvgl) := a9a55321c7fe5159834f417aaff92117a85dddcd
+DIR(lvgl) := lvgl
+PATCHES   := src/lib/lvgl/lv_conf_include.patch
+PATCH_OPT := -p1 -d lvgl

@@ -1,0 +1,715 @@
+diff --git a/lv_core/lv_group.h b/lv_core/lv_group.h
+index 2efd023..ad5892a 100644
+--- a/lv_core/lv_group.h
++++ b/lv_core/lv_group.h
+@@ -14,7 +14,7 @@ extern "C" {
+  *      INCLUDES
+  *********************/
+ #ifdef LV_CONF_INCLUDE_SIMPLE
+-#include "lv_conf.h"
++#include <lv_conf.h>
+ #else
+ #include "../../lv_conf.h"
+ #endif
+diff --git a/lv_core/lv_obj.h b/lv_core/lv_obj.h
+index 9ebc7a6..0459b33 100644
+--- a/lv_core/lv_obj.h
++++ b/lv_core/lv_obj.h
+@@ -14,7 +14,7 @@ extern "C" {
+  *      INCLUDES
+  *********************/
+ #ifdef LV_CONF_INCLUDE_SIMPLE
+-#include "lv_conf.h"
++#include <lv_conf.h>
+ #else
+ #include "../../lv_conf.h"
+ #endif
+diff --git a/lv_core/lv_vdb.h b/lv_core/lv_vdb.h
+index cbb4329..0098c24 100644
+--- a/lv_core/lv_vdb.h
++++ b/lv_core/lv_vdb.h
+@@ -14,7 +14,7 @@ extern "C" {
+  *      INCLUDES
+  *********************/
+ #ifdef LV_CONF_INCLUDE_SIMPLE
+-#include "lv_conf.h"
++#include <lv_conf.h>
+ #else
+ #include "../../lv_conf.h"
+ #endif
+diff --git a/lv_draw/lv_draw.h b/lv_draw/lv_draw.h
+index cf50e98..2f9d008 100644
+--- a/lv_draw/lv_draw.h
++++ b/lv_draw/lv_draw.h
+@@ -14,7 +14,7 @@ extern "C" {
+  *      INCLUDES
+  *********************/
+ #ifdef LV_CONF_INCLUDE_SIMPLE
+-#include "lv_conf.h"
++#include <lv_conf.h>
+ #else
+ #include "../../lv_conf.h"
+ #endif
+diff --git a/lv_draw/lv_draw_rbasic.h b/lv_draw/lv_draw_rbasic.h
+index b1d62f3..6bcc748 100644
+--- a/lv_draw/lv_draw_rbasic.h
++++ b/lv_draw/lv_draw_rbasic.h
+@@ -14,7 +14,7 @@ extern "C" {
+  *      INCLUDES
+  *********************/
+ #ifdef LV_CONF_INCLUDE_SIMPLE
+-#include "lv_conf.h"
++#include <lv_conf.h>
+ #else
+ #include "../../lv_conf.h"
+ #endif
+diff --git a/lv_draw/lv_draw_vbasic.h b/lv_draw/lv_draw_vbasic.h
+index b619d92..2c28b12 100644
+--- a/lv_draw/lv_draw_vbasic.h
++++ b/lv_draw/lv_draw_vbasic.h
+@@ -14,7 +14,7 @@ extern "C" {
+  *      INCLUDES
+  *********************/
+ #ifdef LV_CONF_INCLUDE_SIMPLE
+-#include "lv_conf.h"
++#include <lv_conf.h>
+ #else
+ #include "../../lv_conf.h"
+ #endif
+diff --git a/lv_fonts/lv_font_builtin.h b/lv_fonts/lv_font_builtin.h
+index 1d5d820..908e444 100644
+--- a/lv_fonts/lv_font_builtin.h
++++ b/lv_fonts/lv_font_builtin.h
+@@ -14,7 +14,7 @@ extern "C" {
+  *     INCLUDES
+  *********************/
+ #ifdef LV_CONF_INCLUDE_SIMPLE
+-#include "lv_conf.h"
++#include <lv_conf.h>
+ #else
+ #include "../../lv_conf.h"
+ #endif
+diff --git a/lv_hal/lv_hal_tick.h b/lv_hal/lv_hal_tick.h
+index 346cf07..d268029 100644
+--- a/lv_hal/lv_hal_tick.h
++++ b/lv_hal/lv_hal_tick.h
+@@ -14,7 +14,7 @@ extern "C" {
+  *      INCLUDES
+  *********************/
+ #ifdef LV_CONF_INCLUDE_SIMPLE
+-#include "lv_conf.h"
++#include <lv_conf.h>
+ #else
+ #include "../../lv_conf.h"
+ #endif
+diff --git a/lv_misc/lv_anim.h b/lv_misc/lv_anim.h
+index 544f50d..c7231ff 100644
+--- a/lv_misc/lv_anim.h
++++ b/lv_misc/lv_anim.h
+@@ -15,7 +15,7 @@ extern "C" {
+  *      INCLUDES
+  *********************/
+ #ifdef LV_CONF_INCLUDE_SIMPLE
+-#include "lv_conf.h"
++#include <lv_conf.h>
+ #else
+ #include "../../lv_conf.h"
+ #endif
+diff --git a/lv_misc/lv_color.h b/lv_misc/lv_color.h
+index d478bfc..23e6604 100644
+--- a/lv_misc/lv_color.h
++++ b/lv_misc/lv_color.h
+@@ -14,7 +14,7 @@ extern "C" {
+  *      INCLUDES
+  *********************/
+ #ifdef LV_CONF_INCLUDE_SIMPLE
+-#include "lv_conf.h"
++#include <lv_conf.h>
+ #else
+ #include "../../lv_conf.h"
+ #endif
+diff --git a/lv_misc/lv_font.h b/lv_misc/lv_font.h
+index bbf56fd..a229870 100644
+--- a/lv_misc/lv_font.h
++++ b/lv_misc/lv_font.h
+@@ -15,7 +15,7 @@ extern "C" {
+  *      INCLUDES
+  *********************/
+ #ifdef LV_CONF_INCLUDE_SIMPLE
+-#include "lv_conf.h"
++#include <lv_conf.h>
+ #else
+ #include "../../lv_conf.h"
+ #endif
+diff --git a/lv_misc/lv_fs.h b/lv_misc/lv_fs.h
+index 213cfaa..c6dd4ae 100644
+--- a/lv_misc/lv_fs.h
++++ b/lv_misc/lv_fs.h
+@@ -14,7 +14,7 @@ extern "C" {
+  *      INCLUDES
+  *********************/
+ #ifdef LV_CONF_INCLUDE_SIMPLE
+-#include "lv_conf.h"
++#include <lv_conf.h>
+ #else
+ #include "../../lv_conf.h"
+ #endif
+diff --git a/lv_misc/lv_log.h b/lv_misc/lv_log.h
+index 1b2fa98..2f937d5 100644
+--- a/lv_misc/lv_log.h
++++ b/lv_misc/lv_log.h
+@@ -14,7 +14,7 @@ extern "C" {
+  *      INCLUDES
+  *********************/
+ #ifdef LV_CONF_INCLUDE_SIMPLE
+-#include "lv_conf.h"
++#include <lv_conf.h>
+ #else
+ #include "../../lv_conf.h"
+ #endif
+diff --git a/lv_misc/lv_mem.h b/lv_misc/lv_mem.h
+index 24d27ee..4072f39 100644
+--- a/lv_misc/lv_mem.h
++++ b/lv_misc/lv_mem.h
+@@ -15,7 +15,7 @@ extern "C" {
+  *      INCLUDES
+  *********************/
+ #ifdef LV_CONF_INCLUDE_SIMPLE
+-#include "lv_conf.h"
++#include <lv_conf.h>
+ #else
+ #include "../../lv_conf.h"
+ #endif
+diff --git a/lv_misc/lv_symbol_def.h b/lv_misc/lv_symbol_def.h
+index 6619828..1f83e28 100644
+--- a/lv_misc/lv_symbol_def.h
++++ b/lv_misc/lv_symbol_def.h
+@@ -5,7 +5,7 @@
+ extern "C" {
+ #endif
+ #ifdef LV_CONF_INCLUDE_SIMPLE
+-#include "lv_conf.h"
++#include <lv_conf.h>
+ #else
+ #include "../../lv_conf.h"
+ #endif
+diff --git a/lv_misc/lv_task.h b/lv_misc/lv_task.h
+index 2c59b39..8ae09f3 100644
+--- a/lv_misc/lv_task.h
++++ b/lv_misc/lv_task.h
+@@ -15,7 +15,7 @@ extern "C" {
+  *      INCLUDES
+  *********************/
+ #ifdef LV_CONF_INCLUDE_SIMPLE
+-#include "lv_conf.h"
++#include <lv_conf.h>
+ #else
+ #include "../../lv_conf.h"
+ #endif
+diff --git a/lv_misc/lv_txt.h b/lv_misc/lv_txt.h
+index fd0d68f..73d86f4 100644
+--- a/lv_misc/lv_txt.h
++++ b/lv_misc/lv_txt.h
+@@ -14,7 +14,7 @@ extern "C" {
+  *      INCLUDES
+  *********************/
+ #ifdef LV_CONF_INCLUDE_SIMPLE
+-#include "lv_conf.h"
++#include <lv_conf.h>
+ #else
+ #include "../../lv_conf.h"
+ #endif
+diff --git a/lv_misc/lv_ufs.h b/lv_misc/lv_ufs.h
+index 3ee1fa3..594e299 100644
+--- a/lv_misc/lv_ufs.h
++++ b/lv_misc/lv_ufs.h
+@@ -16,7 +16,7 @@ extern "C" {
+  *      INCLUDES
+  *********************/
+ #ifdef LV_CONF_INCLUDE_SIMPLE
+-#include "lv_conf.h"
++#include <lv_conf.h>
+ #else
+ #include "../../lv_conf.h"
+ #endif
+diff --git a/lv_objx/lv_arc.h b/lv_objx/lv_arc.h
+index 70805d5..730bc0a 100644
+--- a/lv_objx/lv_arc.h
++++ b/lv_objx/lv_arc.h
+@@ -15,7 +15,7 @@ extern "C" {
+  *      INCLUDES
+  *********************/
+ #ifdef LV_CONF_INCLUDE_SIMPLE
+-#include "lv_conf.h"
++#include <lv_conf.h>
+ #else
+ #include "../../lv_conf.h"
+ #endif
+diff --git a/lv_objx/lv_bar.h b/lv_objx/lv_bar.h
+index a66d583..2d10cab 100644
+--- a/lv_objx/lv_bar.h
++++ b/lv_objx/lv_bar.h
+@@ -14,7 +14,7 @@ extern "C" {
+  *      INCLUDES
+  *********************/
+ #ifdef LV_CONF_INCLUDE_SIMPLE
+-#include "lv_conf.h"
++#include <lv_conf.h>
+ #else
+ #include "../../lv_conf.h"
+ #endif
+diff --git a/lv_objx/lv_btn.h b/lv_objx/lv_btn.h
+index 097aff3..d766a59 100644
+--- a/lv_objx/lv_btn.h
++++ b/lv_objx/lv_btn.h
+@@ -14,7 +14,7 @@ extern "C" {
+  *      INCLUDES
+  *********************/
+ #ifdef LV_CONF_INCLUDE_SIMPLE
+-#include "lv_conf.h"
++#include <lv_conf.h>
+ #else
+ #include "../../lv_conf.h"
+ #endif
+diff --git a/lv_objx/lv_btnm.h b/lv_objx/lv_btnm.h
+index 91214e4..f60db51 100644
+--- a/lv_objx/lv_btnm.h
++++ b/lv_objx/lv_btnm.h
+@@ -15,7 +15,7 @@ extern "C" {
+  *      INCLUDES
+  *********************/
+ #ifdef LV_CONF_INCLUDE_SIMPLE
+-#include "lv_conf.h"
++#include <lv_conf.h>
+ #else
+ #include "../../lv_conf.h"
+ #endif
+diff --git a/lv_objx/lv_calendar.h b/lv_objx/lv_calendar.h
+index 537f6e8..bf00d02 100644
+--- a/lv_objx/lv_calendar.h
++++ b/lv_objx/lv_calendar.h
+@@ -14,7 +14,7 @@ extern "C" {
+  *      INCLUDES
+  *********************/
+ #ifdef LV_CONF_INCLUDE_SIMPLE
+-#include "lv_conf.h"
++#include <lv_conf.h>
+ #else
+ #include "../../lv_conf.h"
+ #endif
+diff --git a/lv_objx/lv_cb.h b/lv_objx/lv_cb.h
+index b587733..2d309f8 100644
+--- a/lv_objx/lv_cb.h
++++ b/lv_objx/lv_cb.h
+@@ -14,7 +14,7 @@ extern "C" {
+  *      INCLUDES
+  *********************/
+ #ifdef LV_CONF_INCLUDE_SIMPLE
+-#include "lv_conf.h"
++#include <lv_conf.h>
+ #else
+ #include "../../lv_conf.h"
+ #endif
+diff --git a/lv_objx/lv_chart.h b/lv_objx/lv_chart.h
+index e30ec1b..6885c51 100644
+--- a/lv_objx/lv_chart.h
++++ b/lv_objx/lv_chart.h
+@@ -14,7 +14,7 @@ extern "C" {
+  *      INCLUDES
+  *********************/
+ #ifdef LV_CONF_INCLUDE_SIMPLE
+-#include "lv_conf.h"
++#include <lv_conf.h>
+ #else
+ #include "../../lv_conf.h"
+ #endif
+diff --git a/lv_objx/lv_cont.h b/lv_objx/lv_cont.h
+index 3259c77..f8e32ff 100644
+--- a/lv_objx/lv_cont.h
++++ b/lv_objx/lv_cont.h
+@@ -14,7 +14,7 @@ extern "C" {
+  *      INCLUDES
+  *********************/
+ #ifdef LV_CONF_INCLUDE_SIMPLE
+-#include "lv_conf.h"
++#include <lv_conf.h>
+ #else
+ #include "../../lv_conf.h"
+ #endif
+diff --git a/lv_objx/lv_ddlist.h b/lv_objx/lv_ddlist.h
+index 4833707..9050c61 100644
+--- a/lv_objx/lv_ddlist.h
++++ b/lv_objx/lv_ddlist.h
+@@ -14,7 +14,7 @@ extern "C" {
+  *      INCLUDES
+  *********************/
+ #ifdef LV_CONF_INCLUDE_SIMPLE
+-#include "lv_conf.h"
++#include <lv_conf.h>
+ #else
+ #include "../../lv_conf.h"
+ #endif
+diff --git a/lv_objx/lv_gauge.h b/lv_objx/lv_gauge.h
+index beef9dc..81daab6 100644
+--- a/lv_objx/lv_gauge.h
++++ b/lv_objx/lv_gauge.h
+@@ -14,7 +14,7 @@ extern "C" {
+  *      INCLUDES
+  *********************/
+ #ifdef LV_CONF_INCLUDE_SIMPLE
+-#include "lv_conf.h"
++#include <lv_conf.h>
+ #else
+ #include "../../lv_conf.h"
+ #endif
+diff --git a/lv_objx/lv_img.h b/lv_objx/lv_img.h
+index 9a02df5..c9cc322 100644
+--- a/lv_objx/lv_img.h
++++ b/lv_objx/lv_img.h
+@@ -14,7 +14,7 @@ extern "C" {
+  *      INCLUDES
+  *********************/
+ #ifdef LV_CONF_INCLUDE_SIMPLE
+-#include "lv_conf.h"
++#include <lv_conf.h>
+ #else
+ #include "../../lv_conf.h"
+ #endif
+diff --git a/lv_objx/lv_imgbtn.h b/lv_objx/lv_imgbtn.h
+index de9888b..c461c2a 100644
+--- a/lv_objx/lv_imgbtn.h
++++ b/lv_objx/lv_imgbtn.h
+@@ -14,7 +14,7 @@ extern "C" {
+  *      INCLUDES
+  *********************/
+ #ifdef LV_CONF_INCLUDE_SIMPLE
+-#include "lv_conf.h"
++#include <lv_conf.h>
+ #else
+ #include "../../lv_conf.h"
+ #endif
+diff --git a/lv_objx/lv_kb.h b/lv_objx/lv_kb.h
+index c729a4e..40988c7 100644
+--- a/lv_objx/lv_kb.h
++++ b/lv_objx/lv_kb.h
+@@ -14,7 +14,7 @@ extern "C" {
+  *      INCLUDES
+  *********************/
+ #ifdef LV_CONF_INCLUDE_SIMPLE
+-#include "lv_conf.h"
++#include <lv_conf.h>
+ #else
+ #include "../../lv_conf.h"
+ #endif
+diff --git a/lv_objx/lv_label.h b/lv_objx/lv_label.h
+index 6bdcb5c..dea34bc 100644
+--- a/lv_objx/lv_label.h
++++ b/lv_objx/lv_label.h
+@@ -14,7 +14,7 @@ extern "C" {
+  *      INCLUDES
+  *********************/
+ #ifdef LV_CONF_INCLUDE_SIMPLE
+-#include "lv_conf.h"
++#include <lv_conf.h>
+ #else
+ #include "../../lv_conf.h"
+ #endif
+diff --git a/lv_objx/lv_led.h b/lv_objx/lv_led.h
+index 25e48a7..6e82710 100644
+--- a/lv_objx/lv_led.h
++++ b/lv_objx/lv_led.h
+@@ -14,7 +14,7 @@ extern "C" {
+  *      INCLUDES
+  *********************/
+ #ifdef LV_CONF_INCLUDE_SIMPLE
+-#include "lv_conf.h"
++#include <lv_conf.h>
+ #else
+ #include "../../lv_conf.h"
+ #endif
+diff --git a/lv_objx/lv_line.h b/lv_objx/lv_line.h
+index 60365d4..3fa71ff 100644
+--- a/lv_objx/lv_line.h
++++ b/lv_objx/lv_line.h
+@@ -14,7 +14,7 @@ extern "C" {
+  *      INCLUDES
+  *********************/
+ #ifdef LV_CONF_INCLUDE_SIMPLE
+-#include "lv_conf.h"
++#include <lv_conf.h>
+ #else
+ #include "../../lv_conf.h"
+ #endif
+diff --git a/lv_objx/lv_list.h b/lv_objx/lv_list.h
+index 44ecf1f..f7a65f8 100644
+--- a/lv_objx/lv_list.h
++++ b/lv_objx/lv_list.h
+@@ -14,7 +14,7 @@ extern "C" {
+  *      INCLUDES
+  *********************/
+ #ifdef LV_CONF_INCLUDE_SIMPLE
+-#include "lv_conf.h"
++#include <lv_conf.h>
+ #else
+ #include "../../lv_conf.h"
+ #endif
+diff --git a/lv_objx/lv_lmeter.h b/lv_objx/lv_lmeter.h
+index 0235d34..34d9279 100644
+--- a/lv_objx/lv_lmeter.h
++++ b/lv_objx/lv_lmeter.h
+@@ -14,7 +14,7 @@ extern "C" {
+  *      INCLUDES
+  *********************/
+ #ifdef LV_CONF_INCLUDE_SIMPLE
+-#include "lv_conf.h"
++#include <lv_conf.h>
+ #else
+ #include "../../lv_conf.h"
+ #endif
+diff --git a/lv_objx/lv_mbox.h b/lv_objx/lv_mbox.h
+index 9ca39b6..6b0606e 100644
+--- a/lv_objx/lv_mbox.h
++++ b/lv_objx/lv_mbox.h
+@@ -14,7 +14,7 @@ extern "C" {
+  *      INCLUDES
+  *********************/
+ #ifdef LV_CONF_INCLUDE_SIMPLE
+-#include "lv_conf.h"
++#include <lv_conf.h>
+ #else
+ #include "../../lv_conf.h"
+ #endif
+diff --git a/lv_objx/lv_objx_templ.h b/lv_objx/lv_objx_templ.h
+index ab6d090..b881d4a 100644
+--- a/lv_objx/lv_objx_templ.h
++++ b/lv_objx/lv_objx_templ.h
+@@ -22,7 +22,7 @@ extern "C" {
+  *      INCLUDES
+  *********************/
+ #ifdef LV_CONF_INCLUDE_SIMPLE
+-#include "lv_conf.h"
++#include <lv_conf.h>
+ #else
+ #include "../../lv_conf.h"
+ #endif
+diff --git a/lv_objx/lv_page.h b/lv_objx/lv_page.h
+index 975452d..a7a824d 100644
+--- a/lv_objx/lv_page.h
++++ b/lv_objx/lv_page.h
+@@ -14,7 +14,7 @@ extern "C" {
+  *      INCLUDES
+  *********************/
+ #ifdef LV_CONF_INCLUDE_SIMPLE
+-#include "lv_conf.h"
++#include <lv_conf.h>
+ #else
+ #include "../../lv_conf.h"
+ #endif
+diff --git a/lv_objx/lv_preload.h b/lv_objx/lv_preload.h
+index 393eea8..790d847 100644
+--- a/lv_objx/lv_preload.h
++++ b/lv_objx/lv_preload.h
+@@ -14,7 +14,7 @@ extern "C" {
+  *      INCLUDES
+  *********************/
+ #ifdef LV_CONF_INCLUDE_SIMPLE
+-#include "lv_conf.h"
++#include <lv_conf.h>
+ #else
+ #include "../../lv_conf.h"
+ #endif
+diff --git a/lv_objx/lv_roller.h b/lv_objx/lv_roller.h
+index d0aaed4..690864a 100644
+--- a/lv_objx/lv_roller.h
++++ b/lv_objx/lv_roller.h
+@@ -14,7 +14,7 @@ extern "C" {
+  *      INCLUDES
+  *********************/
+ #ifdef LV_CONF_INCLUDE_SIMPLE
+-#include "lv_conf.h"
++#include <lv_conf.h>
+ #else
+ #include "../../lv_conf.h"
+ #endif
+diff --git a/lv_objx/lv_slider.h b/lv_objx/lv_slider.h
+index 6336ae8..1c2d30b 100644
+--- a/lv_objx/lv_slider.h
++++ b/lv_objx/lv_slider.h
+@@ -14,7 +14,7 @@ extern "C" {
+  *      INCLUDES
+  *********************/
+ #ifdef LV_CONF_INCLUDE_SIMPLE
+-#include "lv_conf.h"
++#include <lv_conf.h>
+ #else
+ #include "../../lv_conf.h"
+ #endif
+diff --git a/lv_objx/lv_sw.h b/lv_objx/lv_sw.h
+index 3834c72..16d2490 100644
+--- a/lv_objx/lv_sw.h
++++ b/lv_objx/lv_sw.h
+@@ -14,7 +14,7 @@ extern "C" {
+  *      INCLUDES
+  *********************/
+ #ifdef LV_CONF_INCLUDE_SIMPLE
+-#include "lv_conf.h"
++#include <lv_conf.h>
+ #else
+ #include "../../lv_conf.h"
+ #endif
+diff --git a/lv_objx/lv_ta.h b/lv_objx/lv_ta.h
+index 284dcac..39755fc 100644
+--- a/lv_objx/lv_ta.h
++++ b/lv_objx/lv_ta.h
+@@ -14,7 +14,7 @@ extern "C" {
+  *      INCLUDES
+  *********************/
+ #ifdef LV_CONF_INCLUDE_SIMPLE
+-#include "lv_conf.h"
++#include <lv_conf.h>
+ #else
+ #include "../../lv_conf.h"
+ #endif
+diff --git a/lv_objx/lv_tabview.h b/lv_objx/lv_tabview.h
+index 3c80ff3..a251672 100644
+--- a/lv_objx/lv_tabview.h
++++ b/lv_objx/lv_tabview.h
+@@ -14,7 +14,7 @@ extern "C" {
+  *      INCLUDES
+  *********************/
+ #ifdef LV_CONF_INCLUDE_SIMPLE
+-#include "lv_conf.h"
++#include <lv_conf.h>
+ #else
+ #include "../../lv_conf.h"
+ #endif
+diff --git a/lv_objx/lv_win.h b/lv_objx/lv_win.h
+index 158c93a..96f21cd 100644
+--- a/lv_objx/lv_win.h
++++ b/lv_objx/lv_win.h
+@@ -14,7 +14,7 @@ extern "C" {
+  *      INCLUDES
+  *********************/
+ #ifdef LV_CONF_INCLUDE_SIMPLE
+-#include "lv_conf.h"
++#include <lv_conf.h>
+ #else
+ #include "../../lv_conf.h"
+ #endif
+diff --git a/lv_themes/lv_theme.h b/lv_themes/lv_theme.h
+index 4fc93d2..dd6e903 100644
+--- a/lv_themes/lv_theme.h
++++ b/lv_themes/lv_theme.h
+@@ -14,7 +14,7 @@ extern "C" {
+  *    INCLUDES
+  *********************/
+ #ifdef LV_CONF_INCLUDE_SIMPLE
+-#include "lv_conf.h"
++#include <lv_conf.h>
+ #else
+ #include "../../lv_conf.h"
+ #endif
+diff --git a/lv_themes/lv_theme_alien.h b/lv_themes/lv_theme_alien.h
+index 7d97cb8..c5cdf6a 100644
+--- a/lv_themes/lv_theme_alien.h
++++ b/lv_themes/lv_theme_alien.h
+@@ -14,7 +14,7 @@ extern "C" {
+  *      INCLUDES
+  *********************/
+ #ifdef LV_CONF_INCLUDE_SIMPLE
+-#include "lv_conf.h"
++#include <lv_conf.h>
+ #else
+ #include "../../lv_conf.h"
+ #endif
+diff --git a/lv_themes/lv_theme_default.h b/lv_themes/lv_theme_default.h
+index 9ec74a9..3818afd 100644
+--- a/lv_themes/lv_theme_default.h
++++ b/lv_themes/lv_theme_default.h
+@@ -14,7 +14,7 @@ extern "C" {
+  *      INCLUDES
+  *********************/
+ #ifdef LV_CONF_INCLUDE_SIMPLE
+-#include "lv_conf.h"
++#include <lv_conf.h>
+ #else
+ #include "../../lv_conf.h"
+ #endif
+diff --git a/lv_themes/lv_theme_material.h b/lv_themes/lv_theme_material.h
+index 306f095..e9e006b 100644
+--- a/lv_themes/lv_theme_material.h
++++ b/lv_themes/lv_theme_material.h
+@@ -14,7 +14,7 @@ extern "C" {
+  *      INCLUDES
+  *********************/
+ #ifdef LV_CONF_INCLUDE_SIMPLE
+-#include "lv_conf.h"
++#include <lv_conf.h>
+ #else
+ #include "../../lv_conf.h"
+ #endif
+diff --git a/lv_themes/lv_theme_mono.h b/lv_themes/lv_theme_mono.h
+index a7c8c8c..a932e94 100644
+--- a/lv_themes/lv_theme_mono.h
++++ b/lv_themes/lv_theme_mono.h
+@@ -14,7 +14,7 @@ extern "C" {
+  *      INCLUDES
+  *********************/
+ #ifdef LV_CONF_INCLUDE_SIMPLE
+-#include "lv_conf.h"
++#include <lv_conf.h>
+ #else
+ #include "../../lv_conf.h"
+ #endif
+diff --git a/lv_themes/lv_theme_nemo.h b/lv_themes/lv_theme_nemo.h
+index 4e62dc1..91f7fc0 100644
+--- a/lv_themes/lv_theme_nemo.h
++++ b/lv_themes/lv_theme_nemo.h
+@@ -14,7 +14,7 @@ extern "C" {
+  *      INCLUDES
+  *********************/
+ #ifdef LV_CONF_INCLUDE_SIMPLE
+-#include "lv_conf.h"
++#include <lv_conf.h>
+ #else
+ #include "../../lv_conf.h"
+ #endif
+diff --git a/lv_themes/lv_theme_night.h b/lv_themes/lv_theme_night.h
+index 3c760c3..d673647 100644
+--- a/lv_themes/lv_theme_night.h
++++ b/lv_themes/lv_theme_night.h
+@@ -14,7 +14,7 @@ extern "C" {
+  *      INCLUDES
+  *********************/
+ #ifdef LV_CONF_INCLUDE_SIMPLE
+-#include "lv_conf.h"
++#include <lv_conf.h>
+ #else
+ #include "../../lv_conf.h"
+ #endif
+diff --git a/lv_themes/lv_theme_templ.h b/lv_themes/lv_theme_templ.h
+index e70af4f..8426468 100644
+--- a/lv_themes/lv_theme_templ.h
++++ b/lv_themes/lv_theme_templ.h
+@@ -14,7 +14,7 @@ extern "C" {
+  *      INCLUDES
+  *********************/
+ #ifdef LV_CONF_INCLUDE_SIMPLE
+-#include "lv_conf.h"
++#include <lv_conf.h>
+ #else
+ #include "../../lv_conf.h"
+ #endif
+diff --git a/lv_themes/lv_theme_zen.h b/lv_themes/lv_theme_zen.h
+index 27b1909..e645aad 100644
+--- a/lv_themes/lv_theme_zen.h
++++ b/lv_themes/lv_theme_zen.h
+@@ -14,7 +14,7 @@ extern "C" {
+  *      INCLUDES
+  *********************/
+ #ifdef LV_CONF_INCLUDE_SIMPLE
+-#include "lv_conf.h"
++#include <lv_conf.h>
+ #else
+ #include "../../lv_conf.h"
+ #endif
