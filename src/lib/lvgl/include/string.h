@@ -1,11 +1,6 @@
 
-#include <util/string.h>
+#include <stdint.h>
 
-extern "C" {
+void *memcpy(void *, const void *, size_t);
 
-    inline void *memcpy(void *dst, const void *src, Genode::size_t size)
-    {
-        return Genode::memcpy(dst, src, size);
-    }
-
-}
+void *memset(void *, int, size_t);

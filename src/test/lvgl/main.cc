@@ -14,7 +14,7 @@ struct Main
 
     Main(Genode::Env &env) : _env(env)
     {
-        lvgl_init(_framebuffer.dataspace(), drv);
+        lvgl_init(_env, _framebuffer.dataspace(), drv);
     }
 };
 
