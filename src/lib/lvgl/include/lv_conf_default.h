@@ -23,8 +23,8 @@
 #define LV_INV_FIFO_SIZE 32
 #define LV_REFR_PERIOD 30
 
-#include <lv_misc/lv_font.h>
-LV_FONT_DECLARE(lv_font_dejavu_20);
+#define USE_LV_FONT_DEJAVU_20 4
+#define USE_LV_FONT_SYMBOL_20 4
 #define LV_FONT_DEFAULT &lv_font_dejavu_20
 
 #define LV_COLOR_TRANSP LV_COLOR_LIME

@@ -24,6 +24,8 @@ SRC_C += lv_obj.c \
 	 lv_draw_vbasic.c \
 	 lv_hal_tick.c \
 	 lv_hal_disp.c \
+	 lv_font_builtin.c \
+	 lv_font_symbol_20.c \
 	 lv_font_dejavu_20.c
 
 SHARED_LIB = no
