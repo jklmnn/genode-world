@@ -1,5 +1,6 @@
 
 #include <framebuffer_session/framebuffer_session.h>
+#include <lv_conf.h>
 
 #ifndef LV_VDB_SIZE
 #error Unbuffered mode not supported
