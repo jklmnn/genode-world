@@ -2,18 +2,20 @@
 #ifndef _LV_CONF_DEFAULT_H_
 #define _LV_CONF_DEFAULT_H_
 
-#define LV_VDB_SIZE (LV_HOR_RES * LV_VER_RES * LV_COLOR_DEPTH / 8)
+//#define LV_VDB_SIZE (LV_HOR_RES * LV_VER_RES * LV_COLOR_DEPTH / 8)
+#define LV_VDB_SIZE 0
+#define USE_LV_REAL_DRAW 1
 
 #ifndef LV_DPI
 #define LV_DPI 100
 #endif
 
-#define LV_VDB_ADR LV_VDB_ADR_INV
-#define LV_VDB_ADR2 LV_VDB_ADR_INV
-#define LV_VDB_DOUBLE 0
+//#define LV_VDB_ADR LV_VDB_ADR_INV
+//#define LV_VDB_ADR2 LV_VDB_ADR_INV
+//#define LV_VDB_DOUBLE 0
 #define LV_VDB_PX_BPP LV_COLOR_SIZE
 
-#define LV_ANTIALIAS 1
+#define LV_ANTIALIAS 0
 
 #define LV_MEM_CUSTOM 0
 #define LV_MEM_SIZE (32U * 1024U)
@@ -28,5 +30,10 @@
 #define LV_FONT_DEFAULT &lv_font_dejavu_20
 
 #define LV_COLOR_TRANSP LV_COLOR_LIME
+
+#define USE_LV_LABEL 1
+
+#define LV_TXT_UTF8 1
+#define LV_TXT_BREAK_CHARS " ,.;:-_"
 
 #endif

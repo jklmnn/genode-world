@@ -1,20 +1,18 @@
 
 #include <base/component.h>
-#include <framebuffer_session/connection.h>
 
-#include <lv_conf.h>
 #include <lvgl.h>
 
 struct Main
 {
     Genode::Env &_env;
-    Framebuffer::Mode _mode { LV_HOR_RES, LV_VER_RES, Framebuffer::Mode::RGB565 };
-    Framebuffer::Connection _framebuffer { _env, _mode };
-    lv_disp_drv_t drv {};
+    Lvgl _lvgl {_env};
 
     Main(Genode::Env &env) : _env(env)
     {
-        lvgl_init(_env, _framebuffer.dataspace(), drv);
+        lv_obj_t * label1 = lv_label_create(lv_scr_act(), NULL);
+        lv_label_set_text(label1, "Hello world!");
+        lv_obj_align(label1, NULL, LV_ALIGN_CENTER, 0, 0);
     }
 };
 
