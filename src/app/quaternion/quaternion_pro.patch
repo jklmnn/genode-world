@@ -1,12 +1,13 @@
 diff --git a/quaternion.pro b/quaternion.pro
 new file mode 100644
-index 0000000..9f2febb
+index 0000000..822bb84
 --- /dev/null
 +++ b/quaternion.pro
-@@ -0,0 +1,30 @@
+@@ -0,0 +1,96 @@
 +TARGET = quaternion
 +
-+QT += core gui widgets
++QT += core gui widgets qml network
++CONFIG += c++14 warn_on rtti_off create_prl object_parallel_to_source
 +TEMPLATE = app
 +
 +SOURCES += \
@@ -30,7 +31,72 @@ index 0000000..9f2febb
 +    main.cpp
 +
 +SOURCES += \
-+    room.cpp
++    connectiondata.cpp \
++    connection.cpp \
++    eventitem.cpp \
++    room.cpp \
++    user.cpp \
++    avatar.cpp \
++    util.cpp \
++    event.cpp \
++    roomevent.cpp \
++    stateevent.cpp \
++    eventcontent.cpp \
++    roommessageevent.cpp \
++    roommemberevent.cpp \
++    typingevent.cpp \
++    callanswerevent.cpp \
++    callcandidatesevent.cpp \
++    callhangupevent.cpp \
++    callinviteevent.cpp \
++    receiptevent.cpp \
++    directchatevent.cpp \
++    requestdata.cpp \
++    basejob.cpp \
++    syncjob.cpp \
++    mediathumbnailjob.cpp \
++    downloadfilejob.cpp \
++    logging.cpp \
++    converters.cpp \
++    settings.cpp \
++    networksettings.cpp \
++    networkaccessmanager.cpp
 +
 +HEADERS += \
-+    room.h
++    connectiondata.h \
++    connection.h \
++    eventitem.h \
++    room.h \
++    user.h \
++    avatar.h \
++    util.h \
++    event.h \
++    roomevent.h \
++    stateevent.h \
++    eventcontent.h \
++    roommessageevent.h \
++    simplestateevents.h \
++    roommemberevent.h \
++    roomavatarevent.h \
++    typingevent.h \
++    receiptevent.h \
++    callanswerevent.h \
++    callcandidatesevent.h \
++    callhangupevent.h \
++    callinviteevent.h \
++    accountdataevents.h \
++    directchatevent.h \
++    redactionevent.h \
++    eventloader.h \
++    requestdata.h \
++    basejob.h \
++    syncjob.h \
++    mediathumbnailjob.h \
++    downloadfilejob.h \
++    postreadmarkersjob.h \
++    logging.h \
++    converters.h \
++    settings.h \
++    networksettings.h \
++    networkaccessmanager.h
++

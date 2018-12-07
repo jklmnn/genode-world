@@ -7,14 +7,22 @@ QMATRIX_DIR := $(call select_from_ports,quaternion)/qmatrixclient/libqmatrixclie
 QMAKE_PROJECT_PATH = $(QUATERION_DIR)/client
 QMAKE_PROJECT_FILE = $(QUATERION_DIR)/quaternion.pro
 
-INC_DIR += $(QMATRIX_DIR)/lib
+INC_DIR += $(QMATRIX_DIR)/lib \
+	   $(QMATRIX_DIR)/lib/events \
+	   $(QMATRIX_DIR)/lib/jobs
 
-vpath % $(QMAKE_PROJECT_PATH) $(QMATRIX_DIR)/lib
+vpath % \
+    $(QMAKE_PROJECT_PATH) \
+    $(QMAKE_PROJECT_PATH)/models \
+    $(QMATRIX_DIR)/lib \
+    $(QMATRIX_DIR)/lib/events \
+    $(QMATRIX_DIR)/lib/jobs
 
 include $(call select_from_repositories,src/app/qt5/tmpl/target_defaults.inc)
 include $(call select_from_repositories,src/app/qt5/tmpl/target_final.inc)
 
-LIBS += qt5_component qt5_printsupport stdcxx libm
+LIBS += qt5_component qt5_network stdcxx libc
 
+CC_CXX_OPT = -UQT_NO_BEARERMANAGEMENT
 CC_CXX_OPT_STD = -std=gnu++14
 CC_CXX_WARN_STRICT =

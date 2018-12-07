@@ -1,0 +1,11 @@
+
+#ifndef _CMATH_
+#define _CMATH_
+
+#include_next <cmath>
+
+namespace std {
+    extern "C" long long llround(double);
+};
+
+#endif
