@@ -10,5 +10,6 @@ URL(libqmatrixclient) := https://github.com/QMatrixClient/libqmatrixclient.git
 REV(libqmatrixclient) := 6f18091a48530399908fbc6ebcb0697bae970abb
 DIR(libqmatrixclient) := qmatrixclient/libqmatrixclient
 
-PATCHES := src/app/quaternion/quaternion_pro.patch
-PATCH_OPT := -p1 -d qmatrixclient/quaternion
+PATCHES := src/app/quaternion/quaternion_pro.patch \
+           src/app/quaternion/libqmatrixclient_qtbearerwa.patch
+PATCH_OPT := -p0 -d qmatrixclient

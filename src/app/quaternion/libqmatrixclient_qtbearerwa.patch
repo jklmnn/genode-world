@@ -1,0 +1,13 @@
+diff --git libqmatrixclient/lib/networkaccessmanager.cpp libqmatrixclient/lib/networkaccessmanager.cpp
+index 89967a8..cdbb446 100644
+--- libqmatrixclient/lib/networkaccessmanager.cpp
++++ libqmatrixclient/lib/networkaccessmanager.cpp
+@@ -52,8 +52,6 @@ static NetworkAccessManager* createNam()
+     auto nam = new NetworkAccessManager(QCoreApplication::instance());
+     // See #109. Once Qt bearer management gets better, this workaround
+     // should become unnecessary.
+-    nam->connect(nam, &QNetworkAccessManager::networkAccessibleChanged,
+-        [nam] { nam->setNetworkAccessible(QNetworkAccessManager::Accessible); });
+     return nam;
+ }
+ 

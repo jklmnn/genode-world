@@ -1,8 +1,8 @@
-diff --git a/quaternion.pro b/quaternion.pro
+diff --git quaternion/quaternion.pro quaternion/quaternion.pro
 new file mode 100644
 index 0000000..822bb84
 --- /dev/null
-+++ b/quaternion.pro
++++ quaternion/quaternion.pro
 @@ -0,0 +1,96 @@
 +TARGET = quaternion
 +

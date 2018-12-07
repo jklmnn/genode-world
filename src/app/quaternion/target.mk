@@ -23,6 +23,5 @@ include $(call select_from_repositories,src/app/qt5/tmpl/target_final.inc)
 
 LIBS += qt5_component qt5_network stdcxx libc
 
-CC_CXX_OPT = -UQT_NO_BEARERMANAGEMENT
 CC_CXX_OPT_STD = -std=gnu++14
 CC_CXX_WARN_STRICT =
