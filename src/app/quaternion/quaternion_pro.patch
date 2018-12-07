@@ -1,0 +1,36 @@
+diff --git a/quaternion.pro b/quaternion.pro
+new file mode 100644
+index 0000000..9f2febb
+--- /dev/null
++++ b/quaternion.pro
+@@ -0,0 +1,30 @@
++TARGET = quaternion
++
++QT += core gui widgets
++TEMPLATE = app
++
++SOURCES += \
++    quaternionroom.cpp \
++    imageprovider.cpp \
++    activitydetector.cpp \
++    dialog.cpp \
++    logindialog.cpp \
++    networkconfigdialog.cpp \
++    roomdialogs.cpp \
++    mainwindow.cpp \
++    roomlistdock.cpp \
++    userlistdock.cpp \
++    kchatedit.cpp \
++    chatedit.cpp \
++    chatroomwidget.cpp \
++    systemtrayicon.cpp \
++    messageeventmodel.cpp \
++    userlistmodel.cpp \
++    roomlistmodel.cpp \
++    main.cpp
++
++SOURCES += \
++    room.cpp
++
++HEADERS += \
++    room.h

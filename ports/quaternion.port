@@ -1,0 +1,14 @@
+LICENSE   := GPLv3
+VERSION   := git
+DOWNLOADS := quaternion.git libqmatrixclient.git
+
+URL(quaternion)  := https://github.com/QMatrixClient/Quaternion.git
+REV(quaternion)  := 32697ffedb1a2968582bc21ec2dfe4dcdebaedfa
+DIR(quaternion)  := qmatrixclient/quaternion
+
+URL(libqmatrixclient) := https://github.com/QMatrixClient/libqmatrixclient.git
+REV(libqmatrixclient) := 6f18091a48530399908fbc6ebcb0697bae970abb
+DIR(libqmatrixclient) := qmatrixclient/libqmatrixclient
+
+PATCHES := src/app/quaternion/quaternion_pro.patch
+PATCH_OPT := -p1 -d qmatrixclient/quaternion
