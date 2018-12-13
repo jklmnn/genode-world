@@ -63,6 +63,25 @@ index 0000000..822bb84
 +    networkaccessmanager.cpp
 +
 +HEADERS += \
++    activitydetector.h \
++    chatedit.h \
++    dialog.h \
++    imageprovider.h \
++    kchatedit.h \
++    logindialog.h \
++    mainwindow.h \
++    messageeventmodel.h \
++    roomlistmodel.h \
++    userlistmodel.h \
++    networkconfigdialog.h \
++    quaternionroom.h \
++    roomdialogs.h \
++    systemtrayicon.h \
++    chatroomwidget.h \
++    roomlistdock.h \
++    userlistdock.h
++
++HEADERS += \
 +    connectiondata.h \
 +    connection.h \
 +    eventitem.h \

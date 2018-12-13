@@ -11,7 +11,7 @@ INC_DIR += $(QMATRIX_DIR)/lib \
 	   $(QMATRIX_DIR)/lib/events \
 	   $(QMATRIX_DIR)/lib/jobs
 
-vpath % \
+vpath %.cpp \
     $(QMAKE_PROJECT_PATH) \
     $(QMAKE_PROJECT_PATH)/models \
     $(QMATRIX_DIR)/lib \
